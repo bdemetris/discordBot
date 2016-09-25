@@ -8,14 +8,29 @@ token = "MTkzNTA2ODAwMjc0ODk4OTQ1.CkdJtA.5LSCdpqpfFndHTbVAFgYI4BZfMg"
 
 #----------------------------------------------------------------------------------------------------------------------#
 @client.event
-'''
-RUNS WHEN EXECUTION IS COMPLETE
-'''
+
+# RUNS WHEN EXECUTION IS COMPLETE
+
 async def on_ready():
     print("Logged in as")
     print(client.user.name)
     print(client.user.id)
     print("----------")
+
+    # a pandamonia detection function
+    member_list = []
+
+    for member in list(client.get_all_members()):
+        member_list.append(str(member))
+
+    for m in member_list:
+        if 'Panda' in m:
+            print('Pandamonia Detected')
+
+    # who's online and is the object iterable? (i.e not a generator object)
+    print(sorted(member_list))
+    print(type(member_list))
+
 
 @client.event
 async def on_message(message):
@@ -48,4 +63,8 @@ async def on_message(message):
     #    player = voice.create_ffmpeg_player("E:\Programs\Coding\Eclipse\workspace\Discord Bots\src\sound files\Human - Yes_mi_lord.mp3")
     #    player.start()
 
+
+
 client.run(token)
+
+
